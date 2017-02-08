@@ -1746,10 +1746,10 @@ extern __bit __timeout;
 char UART_Init(const long int baudrate)
 {
 unsigned int x;
-x = (4000000 - baudrate*64)/(baudrate*64);
+x = (20000000 - baudrate*64)/(baudrate*64);
 if(x>255)
 {
-x = (4000000 - baudrate*16)/(baudrate*16);
+x = (20000000 - baudrate*16)/(baudrate*16);
 BRGH = 1;
 }
 if(x<256)
@@ -1767,7 +1767,9 @@ return 0;
 }
 
 char UART_Init9600(){
-SPBRG = 25;
+
+# 54
+SPBRG = 10;
 BRGH = 1;
 SYNC = 0;
 SPEN = 1;
@@ -1839,12 +1841,12 @@ void interrupt tc_int (void){
 if (T0IF){
 
 T0IF = 0;
-TMR0 = 56;
+TMR0 = 6;
 
 
 TMR1IF = 0;
-TMR1H = 0xFf;
-TMR1L = 0x38;
+TMR1H = 0xFc;
+TMR1L = 0x18;
 TMR1ON = 1;
 i++;
 PORTCbits.RC1 = 1;
@@ -1855,7 +1857,7 @@ TMR1IF = 0;
 TMR1ON = 0;
 
 
-PORTCbits.RC1 = 1;
+PORTCbits.RC1 = 0;
 
 } else if(RCIF){
 tmpChar = RCREG;
@@ -1884,21 +1886,23 @@ if((receivedData[1] >> 4) ) {
 if(receivedData[1] & 0x01){
 
 UART_Write('F');
-PORTCbits.RC1 = 0;
+
 PORTCbits.RC0 = 0;
 PORTCbits.RC2 = 1;
-PORTCbits.RC1 = 1;
+
 }else {
 
 UART_Write('B');
-PORTCbits.RC1 = 0;
+
 PORTCbits.RC0 = 1;
 PORTCbits.RC2 = 0;
-PORTCbits.RC1 = 1;
+
 }
 
 }else {
 
+PORTCbits.RC0 = 0;
+PORTCbits.RC2 = 0;
 PORTCbits.RC1 = 0;
 }
 
@@ -1919,6 +1923,8 @@ PORTCbits.RC3 = 0;
 PORTCbits.RC6 = 1;
 }else {
 
+PORTCbits.RC7 = 0;
+PORTCbits.RC3 = 0;
 PORTCbits.RC6 = 0;
 }
 
@@ -1937,8 +1943,8 @@ UART_Write_Text("ERROR1");
 void InitTimer1(){
 T1CON = 0x01;
 TMR1IF = 0;
-TMR1H = 0xFF;
-TMR1L = 0x38;
+TMR1H = 0xFc;
+TMR1L = 0x18;
 TMR1IE = 1;
 INTCON |= 0xC0;
 }
@@ -1947,8 +1953,8 @@ INTCON |= 0xC0;
 
 
 void InitTimer0(){
-OPTION_REG = 0x81;
-TMR0 = 56;
+OPTION_REG = 0x83;
+TMR0 = 6;
 INTCON |= 0xA0;
 }
 
@@ -1970,13 +1976,13 @@ PORTA = 0x00;
 PORTB = 0x00;
 PORTC = 0x00;
 PORTAbits.RA2 = 1;
-_delay((unsigned long)((2000)*(4000000/4000.0)));
+_delay((unsigned long)((2000)*(20000000/4000.0)));
 PORTAbits.RA2 = 0;
 
 InitTimer0();
 InitTimer1();
 
-# 211
+# 215
 UART_Init9600();
 GIE = 1;
 
@@ -1985,7 +1991,6 @@ PORTCbits.RC1 = 0;
 PORTCbits.RC6 = 0;
 PORTCbits.RC7 = 0;
 PORTCbits.RC3 = 0;
-
 
 while(1){
 if(newData){
@@ -2018,12 +2023,12 @@ while(0){
 PORTCbits.RC7 = 0;
 PORTCbits.RC3 = 1;
 PORTCbits.RC6 = 1;
-_delay((unsigned long)((500)*(4000000/4000.0)));
+_delay((unsigned long)((500)*(20000000/4000.0)));
 PORTCbits.RC6 = 0;
 PORTCbits.RC7 = 1;
 PORTCbits.RC3 = 0;
 PORTCbits.RC6 = 1;
-_delay((unsigned long)((500)*(4000000/4000.0)));
+_delay((unsigned long)((500)*(20000000/4000.0)));
 PORTCbits.RC6 = 0;
 }
 

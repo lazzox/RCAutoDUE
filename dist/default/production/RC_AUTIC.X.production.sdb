@@ -17,19 +17,19 @@
 [v _tc_int tc_int `II(v  1 e 1 0 ]
 "104
 [v _setHBridge setHBridge `(v  1 e 1 0 ]
-"163
+"167
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
-"175
+"179
 [v _InitTimer0 InitTimer0 `(v  1 e 1 0 ]
-"183
+"187
 [v _main main `(v  1 e 1 0 ]
 "39 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
 [v _UART_Init9600 UART_Init9600 `(uc  1 e 1 0 ]
-"62
-[v _UART_Read UART_Read `(uc  1 e 1 0 ]
 "76
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+"90
 [v _UART_Write UART_Write `(v  1 e 1 0 ]
-"82
+"96
 [v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.36\include\pic16f689.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -149,50 +149,50 @@
 [v _newData newData `uc  1 e 1 0 ]
 "43
 [v _receivedData receivedData `[15]uc  1 e 15 0 ]
-"183
+"187
 [v _main main `(v  1 e 1 0 ]
 {
-"284
+"287
 } 0
 "104
 [v _setHBridge setHBridge `(v  1 e 1 0 ]
 {
-"159
+"163
 } 0
-"82 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
+"96 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
 [v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
 {
 [v UART_Write_Text@text text `*.24uc  1 a 1 wreg ]
-"84
+"98
 [v UART_Write_Text@i i `i  1 a 2 2 ]
-"82
+"96
 [v UART_Write_Text@text text `*.24uc  1 a 1 wreg ]
-"85
+"99
 [v UART_Write_Text@text text `*.24uc  1 a 1 1 ]
-"87
+"101
 } 0
-"76
+"90
 [v _UART_Write UART_Write `(v  1 e 1 0 ]
 {
 [v UART_Write@data data `uc  1 a 1 wreg ]
 [v UART_Write@data data `uc  1 a 1 wreg ]
 [v UART_Write@data data `uc  1 a 1 0 ]
-"80
+"94
 } 0
 "39
 [v _UART_Init9600 UART_Init9600 `(uc  1 e 1 0 ]
 {
-"51
+"65
 } 0
-"163 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+"167 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
 {
-"170
+"174
 } 0
-"175
+"179
 [v _InitTimer0 InitTimer0 `(v  1 e 1 0 ]
 {
-"179
+"183
 } 0
 "64
 [v _tc_int tc_int `II(v  1 e 1 0 ]

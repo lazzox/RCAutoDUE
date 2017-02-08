@@ -11,7 +11,7 @@
 
 #include <pic16f689.h>
 
-#define _XTAL_FREQ 4000000
+#define _XTAL_FREQ 20000000
 
 char UART_Init(const long int baudrate)
 {
@@ -37,10 +37,24 @@ char UART_Init(const long int baudrate)
 }
 
 char UART_Init9600(){
-    SPBRG = 25; /* Calculated for baudrate of 9600 */
+    /* @ 4 mhz
+    SPBRG = 25; // Calculated for baudrate of 9600 
     BRGH = 1;
     SYNC = 0;
-    SPEN = 1; /* SPEN = 1 -> Serial port enabled (configures RX/DT and TX/CK pins as serial port pins) */
+    SPEN = 1; // SPEN = 1 -> Serial port enabled (configures RX/DT and TX/CK pins as serial port pins) 
+    TRISB7 = 1;
+    TRISB5 = 1;
+    CREN = 1;
+    TXEN = 1;
+    
+    RCIE = 1;
+    PEIE = 1;
+    */
+    
+    SPBRG = 10; // Calculated for baudrate of 9600 
+    BRGH = 1;
+    SYNC = 0;
+    SPEN = 1; // SPEN = 1 -> Serial port enabled (configures RX/DT and TX/CK pins as serial port pins) 
     TRISB7 = 1;
     TRISB5 = 1;
     CREN = 1;

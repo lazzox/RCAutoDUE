@@ -35,7 +35,7 @@
 #define LED1 PORTAbits.RA2
 
 
-#define TMR0_RLDVAL 56
+#define TMR0_RLDVAL 6
 
 uint16_t i = 0;
 uint8_t tmpChar = 0;
@@ -69,8 +69,8 @@ void interrupt   tc_int  (void){        // interrupt function
         
         /* Reload TMR1 */
         TMR1IF = 0;
-        TMR1H = 0xFf;
-        TMR1L = 0x38;
+        TMR1H = 0xFc;
+        TMR1L = 0x18;
         TMR1ON = 1;
         i++;
         ENA = 1;
@@ -81,7 +81,7 @@ void interrupt   tc_int  (void){        // interrupt function
         TMR1ON = 0;
         
         /* End of duty cycle */
-        ENA = 1;
+        ENA = 0;
        
     } else if(RCIF){
         tmpChar = RCREG; 
@@ -110,21 +110,23 @@ void setHBridge(){
             if(receivedData[1] & 0x01){ 
                 /* Move forward */ 
                 UART_Write('F');
-                ENA = 0;
+                //ENA = 0;
                 IN1 = 0;
                 IN2 = 1;
-                ENA = 1;
+               // ENA = 1;
             }else {
                 /* Move backwards */
                 UART_Write('B');
-                ENA = 0;
+                //ENA = 0;
                 IN1 = 1;
                 IN2 = 0;
-                ENA = 1;
+               // ENA = 1;
             }
            
         }else {
             /* There is no movement */
+            IN1 = 0;
+            IN2 = 0;
             ENA = 0;
         }
         
@@ -145,6 +147,8 @@ void setHBridge(){
             ENB = 1;
         }else {
             /* There is no movement */
+            IN3 = 0;
+            IN4 = 0;
             ENB = 0;
         }
         
@@ -163,8 +167,8 @@ void setHBridge(){
 void InitTimer1(){
   T1CON = 0x01;
   TMR1IF = 0;
-  TMR1H	 = 0xFF;
-  TMR1L	 = 0x38;
+  TMR1H	 = 0xFc;
+  TMR1L	 = 0x18;
   TMR1IE = 1;
   INTCON |= 0xC0;
 }
@@ -173,7 +177,7 @@ void InitTimer1(){
 //Timer0
 //Prescaler 1:4; TMR0 Preload = 56; Actual Interrupt Time : 800 us
 void InitTimer0(){
-  OPTION_REG = 0x81;
+  OPTION_REG = 0x83;
   TMR0 = TMR0_RLDVAL;
   INTCON |= 0xA0;
 }
@@ -216,8 +220,7 @@ void main(void) {
     ENB = 0;
     IN3 = 0;
     IN4 = 0;       
-    
-    
+   
      while(1){
          if(newData){
              
