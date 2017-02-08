@@ -1,0 +1,197 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F689 ]
+[d frameptr 6 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.36\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.36\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.36\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.36\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"63 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+[v _tc_int tc_int `II(v  1 e 1 0 ]
+"99
+[v _setHBridge setHBridge `(v  1 e 1 0 ]
+"150
+[v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
+"162
+[v _InitTimer0 InitTimer0 `(v  1 e 1 0 ]
+"170
+[v _main main `(v  1 e 1 0 ]
+"62 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+"76
+[v _UART_Write UART_Write `(v  1 e 1 0 ]
+[v i1_UART_Write UART_Write `(v  1 e 1 0 ]
+"82
+[v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
+"55 C:\Program Files (x86)\Microchip\xc8\v1.36\include\pic16f689.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"160
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+[s S114 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+]
+"175
+[u S121 . 1 `S114 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES121  1 e 1 @5 ]
+"209
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"247
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+[s S38 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"264
+[u S47 . 1 `S38 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES47  1 e 1 @7 ]
+"314
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"471
+[v _TMR1L TMR1L `VEuc  1 e 1 @14 ]
+"477
+[v _TMR1H TMR1H `VEuc  1 e 1 @15 ]
+"483
+[v _T1CON T1CON `VEuc  1 e 1 @16 ]
+"689
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"695
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
+[s S64 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 VCFG 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"737
+[s S70 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+]
+[s S77 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S80 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S83 . 1 `S64 1 . 1 0 `S70 1 . 1 0 `S77 1 . 1 0 `S80 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES83  1 e 1 @31 ]
+"801
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
+"870
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"919
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"957
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"2004
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"2573
+[v _ANSEL ANSEL `VEuc  1 e 1 @286 ]
+"2866
+[v _BRGH BRGH `VEb  1 e 0 @1218 ]
+"2928
+[v _CREN CREN `VEb  1 e 0 @196 ]
+"2948
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"3098
+[v _RCIE RCIE `VEb  1 e 0 @1125 ]
+"3100
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
+"3130
+[v _SPEN SPEN `VEb  1 e 0 @199 ]
+"3156
+[v _SYNC SYNC `VEb  1 e 0 @1220 ]
+"3162
+[v _T0IF T0IF `VEb  1 e 0 @90 ]
+"3184
+[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
+"3186
+[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
+"3188
+[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
+"3222
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"3224
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"3226
+[v _TRMT TRMT `VEb  1 e 0 @1217 ]
+"3242
+[v _TXEN TXEN `VEb  1 e 0 @1221 ]
+"40 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+[v _i i `ui  1 e 2 0 ]
+"41
+[v _newData newData `uc  1 e 1 0 ]
+"42
+[v _receivedData receivedData `[4]uc  1 e 4 0 ]
+"170
+[v _main main `(v  1 e 1 0 ]
+{
+"241
+} 0
+"99
+[v _setHBridge setHBridge `(v  1 e 1 0 ]
+{
+"146
+} 0
+"82 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
+[v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
+{
+[v UART_Write_Text@text text `*.24uc  1 a 1 wreg ]
+"84
+[v UART_Write_Text@i i `i  1 a 2 0 ]
+"82
+[v UART_Write_Text@text text `*.24uc  1 a 1 wreg ]
+"85
+[v UART_Write_Text@text text `*.24uc  1 a 1 2 ]
+"87
+} 0
+"76
+[v _UART_Write UART_Write `(v  1 e 1 0 ]
+{
+[v UART_Write@data data `uc  1 a 1 wreg ]
+[v UART_Write@data data `uc  1 a 1 wreg ]
+[v UART_Write@data data `uc  1 a 1 6 ]
+"80
+} 0
+"150 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+[v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
+{
+"157
+} 0
+"162
+[v _InitTimer0 InitTimer0 `(v  1 e 1 0 ]
+{
+"166
+} 0
+"63
+[v _tc_int tc_int `II(v  1 e 1 0 ]
+{
+"97
+} 0
+"76 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
+[v i1_UART_Write UART_Write `(v  1 e 1 0 ]
+{
+[v i1UART_Write@data data `uc  1 a 1 wreg ]
+[v i1UART_Write@data data `uc  1 a 1 wreg ]
+[v i1UART_Write@data data `uc  1 a 1 0 ]
+"80
+} 0
