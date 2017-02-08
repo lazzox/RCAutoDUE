@@ -193,11 +193,7 @@ void main(void) {
     //PIR1bits.TMR1IF = 0;
     //TMR1H	 = 0x3C;
     //TMR1L	 = 0xB0;
-    
-    //PIE1bits.TMR1IE = 1; /* Enable Timer1 Interrupt */
-    //INTCONbits.PEIE = 1;
-   // GIE = 1; //Global interrupt Enable
-    
+  
     /************INIT UART****************/
     //UART_Init(9600);
   
