@@ -38,8 +38,9 @@
 #define TMR0_RLDVAL 56
 
 uint16_t i = 0;
+uint8_t tmpChar = 0;
 uint8_t newData = 0;
-uint8_t receivedData[4] = '0';
+uint8_t receivedData[15] = '0';
 /** receivedData bytes meaning
  * 
  * [0] - S (beginning of transmision)
@@ -71,27 +72,31 @@ void interrupt   tc_int  (void){        // interrupt function
         TMR1H = 0xFf;
         TMR1L = 0x38;
         TMR1ON = 1;
-        //i++;
+        i++;
         ENA = 1;
-        //ENB = 1;
+        
     }
     else if (TMR1IF){ /* 400 uS interrupt */
         TMR1IF = 0;
         TMR1ON = 0;
         
         /* End of duty cycle */
-        ENA = 0;
-        //ENB = 0;
+        ENA = 1;
+       
     } else if(RCIF){
-        i = 0;
-        while(RCIF)
-        {
-           receivedData[i] = RCREG; 
-           i++;
+        tmpChar = RCREG; 
+        if(tmpChar == 'S' && newData == 0){
+            i = 1;
+            receivedData[0] = tmpChar;
+        }else if(tmpChar == 'T'){
+            receivedData[3] = tmpChar;
+            i=0;
+            newData=1;
         }
-        newData = 1;
-        UART_Write(i);
-        i=0;
+        else{
+            receivedData[i] = RCREG;
+            i++;
+        }
     }
     
 }
@@ -101,17 +106,23 @@ void setHBridge(){
     {
         if((receivedData[1] >> 4) ) {
             /* There is movement */
-            ENA = 0;
-            if(receivedData[1] && 0x01){ 
+           
+            if(receivedData[1] & 0x01){ 
                 /* Move forward */ 
+                UART_Write('F');
+                ENA = 0;
                 IN1 = 0;
                 IN2 = 1;
+                ENA = 1;
             }else {
                 /* Move backwards */
-                IN1 = 0;
-                IN2 = 1;
+                UART_Write('B');
+                ENA = 0;
+                IN1 = 1;
+                IN2 = 0;
+                ENA = 1;
             }
-            ENA = 1;
+           
         }else {
             /* There is no movement */
             ENA = 0;
@@ -120,14 +131,16 @@ void setHBridge(){
          if((receivedData[2] >> 4) ) {
             /* There is stearing */
             ENB = 0;
-            if(receivedData[1] && 0x01){ 
-                /* Stear left */ 
+            if(receivedData[2] & 0x01){ 
+                /* Stear left */
+                UART_Write('L');
                 IN3 = 0;
                 IN4 = 1;
             }else {
                 /* Stear right */
-                IN3 = 0;
-                IN4 = 1;
+                UART_Write('R');
+                IN3 = 1;
+                IN4 = 0;
             }
             ENB = 1;
         }else {
@@ -162,7 +175,7 @@ void InitTimer1(){
 void InitTimer0(){
   OPTION_REG = 0x81;
   TMR0 = TMR0_RLDVAL;
-  INTCON = 0xA0;
+  INTCON |= 0xA0;
 }
  
 
@@ -171,7 +184,7 @@ void main(void) {
     
     //************SET PINS DIGITAL/AD-OFF**************
     ANSEL = 0b00000000; //All I/O pins are configured as digital
-   // ANSELH = 0;//
+    ANSELH = 0;//
     ADCON0bits.ADON = 0;  //disable ADCON
     
     //************SET PINS AS OUTPUT/INPUT**************
@@ -183,7 +196,7 @@ void main(void) {
     PORTB = 0x00;   //PORTB = 1;
     PORTC = 0x00;   //PORTC = 1;
     LED1 = 1;
-    __delay_ms(5000);
+    __delay_ms(2000);
     LED1 = 0;
     //************INIT TIMER1**************
     InitTimer0();
@@ -195,20 +208,54 @@ void main(void) {
     //TMR1L	 = 0xB0;
   
     /************INIT UART****************/
-    //UART_Init(9600);
-  
+    UART_Init9600();
     GIE = 1; /* Global interrupt enabled */
     /************TEST AREA***************/
     
     ENA = 0;
     ENB = 0;
-    IN1 = 1;
-    IN2 = 0;
-    IN3 = 1;
-    IN4 = 0;
-  
-    while(1){
-      
+    IN3 = 0;
+    IN4 = 0;       
+    
+    
+     while(1){
+         if(newData){
+             
+            //UART_Write_Text("PRIMIO");
+            UART_Write(receivedData[0]);
+            UART_Write(receivedData[1]);
+            UART_Write(receivedData[2]);
+            UART_Write(receivedData[3]);
+            UART_Write(receivedData[4]);
+            setHBridge();
+            newData = 0;
+         }
+     }
+    
+    while(0)
+    {
+        if(i>= 5000)
+        {
+            i=0;
+            ENB = 0;
+            IN3 = ~IN3;
+            IN4 = ~IN4;
+            ENB = 1;
+        }
+        
+    }
+    
+    while(0){
+        IN3 = 0;
+        IN4 = 1;
+        ENB = 1;
+        __delay_ms(500);
+        ENB = 0;
+        IN3 = 1;
+        IN4 = 0;
+        ENB = 1;
+        __delay_ms(500);
+        ENB = 0;
     }
     
     while(0){
@@ -218,13 +265,13 @@ void main(void) {
         }
     }
     
-    while(1){
+    while(0){
         ENA = 1;
         ENB = 1;
-        __delay_us(400);
+      //  __delay_us(500);
         ENA = 0;
-        ENB = 1;
-        __delay_us(400);
+        ENB = 0;
+       // __delay_us(300);
     }
     
 

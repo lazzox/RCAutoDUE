@@ -27,8 +27,8 @@ char UART_Init(const long int baudrate)
         SPBRG = x;
         SYNC = 0;
         SPEN = 1;
-        TRISC7 = 1;
-        TRISC6 = 1;
+        TRISB7 = 1;
+        TRISB5 = 1;
         CREN = 1;
         TXEN = 1;
         return 1;
@@ -41,13 +41,13 @@ char UART_Init9600(){
     BRGH = 1;
     SYNC = 0;
     SPEN = 1; /* SPEN = 1 -> Serial port enabled (configures RX/DT and TX/CK pins as serial port pins) */
-    TRISC7 = 1;
-    TRISC6 = 1;
+    TRISB7 = 1;
+    TRISB5 = 1;
     CREN = 1;
     TXEN = 1;
     
     RCIE = 1;
-    
+    PEIE = 1;
 }
 
 char UART_TX_Empty()
