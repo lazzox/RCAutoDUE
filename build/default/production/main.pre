@@ -1,6 +1,106 @@
 
 # 1 "main.c"
 
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 26 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\htc.h"
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
+
+
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+
 # 49 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\pic16f689.h"
 extern volatile unsigned char INDF @ 0x000;
 
@@ -1618,106 +1718,6 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\stdint.h"
-typedef signed char int8_t;
-
-# 20
-typedef signed int int16_t;
-
-# 28
-typedef signed short long int int24_t;
-
-# 36
-typedef signed long int int32_t;
-
-# 43
-typedef unsigned char uint8_t;
-
-# 49
-typedef unsigned int uint16_t;
-
-# 56
-typedef unsigned short long int uint24_t;
-
-# 63
-typedef unsigned long int uint32_t;
-
-# 71
-typedef signed char int_least8_t;
-
-# 78
-typedef signed int int_least16_t;
-
-# 90
-typedef signed short long int int_least24_t;
-
-# 98
-typedef signed long int int_least32_t;
-
-# 105
-typedef unsigned char uint_least8_t;
-
-# 111
-typedef unsigned int uint_least16_t;
-
-# 121
-typedef unsigned short long int uint_least24_t;
-
-# 128
-typedef unsigned long int uint_least32_t;
-
-# 137
-typedef signed char int_fast8_t;
-
-# 144
-typedef signed int int_fast16_t;
-
-# 156
-typedef signed short long int int_fast24_t;
-
-# 164
-typedef signed long int int_fast32_t;
-
-# 171
-typedef unsigned char uint_fast8_t;
-
-# 177
-typedef unsigned int uint_fast16_t;
-
-# 187
-typedef unsigned short long int uint_fast24_t;
-
-# 194
-typedef unsigned long int uint_fast32_t;
-
-# 200
-typedef int32_t intmax_t;
-
-
-
-
-typedef uint32_t uintmax_t;
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\htc.h"
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-
 
 # 27 "C:\Program Files (x86)\Microchip\xc8\v1.36\include\pic.h"
 #pragma intrinsic(__nop)
@@ -1761,14 +1761,31 @@ TRISB7 = 1;
 TRISB5 = 1;
 CREN = 1;
 TXEN = 1;
+RCIE = 1;
 return 1;
 }
 return 0;
 }
 
+char UART_Init115200()
+{
+
+BRGH = 1;
+SPBRG = 10;
+SYNC = 0;
+SPEN = 1;
+TRISB7 = 1;
+TRISB5 = 1;
+CREN = 1;
+TXEN = 1;
+RCIE = 1;
+PEIE = 1;
+return 1;
+}
+
 char UART_Init9600(){
 
-# 54
+# 71
 SPBRG = 10;
 BRGH = 1;
 SYNC = 0;
@@ -1830,23 +1847,25 @@ UART_Write(text[i]);
 #pragma config IESO = ON
 #pragma config FCMEN = ON
 
-# 40
-uint16_t i = 0;
-uint8_t tmpChar = 0;
-uint8_t newData = 0;
-uint8_t receivedData[15] = '0';
+# 45
+static volatile uint16_t i = 0;
+static volatile uint16_t j = 0;
+static volatile uint8_t tmpChar = 0;
+static volatile uint8_t newData = 0;
+static volatile uint8_t receivedData[21] = '0';
 
-# 64
+# 70
 void interrupt tc_int (void){
 if (T0IF){
 
 T0IF = 0;
-TMR0 = 6;
+TMR0 = 61;
+
 
 
 TMR1IF = 0;
-TMR1H = 0xFc;
-TMR1L = 0x18;
+TMR1H = 0x8a;
+TMR1L = 0xd0;
 TMR1ON = 1;
 i++;
 PORTCbits.RC1 = 1;
@@ -1860,19 +1879,36 @@ TMR1ON = 0;
 PORTCbits.RC1 = 0;
 
 } else if(RCIF){
+while(RCIF){
 tmpChar = RCREG;
+
 if(tmpChar == 'S' && newData == 0){
-i = 1;
+j = 1;
 receivedData[0] = tmpChar;
-}else if(tmpChar == 'T'){
+}else if(tmpChar == 'T' && j == 3){
 receivedData[3] = tmpChar;
+j=0;
 i=0;
-newData=1;
+newData=15;
 }
 else{
-receivedData[i] = RCREG;
-i++;
+receivedData[j] = RCREG;
+j++;
 }
+
+if (j > 4) j = 0;
+}
+}
+
+
+if(i > 15) {
+i = 0;
+receivedData[0] = 'S';
+receivedData[1] = 0x00;
+receivedData[2] = 0x00;
+receivedData[3] = 'T';
+newData=1;
+
 }
 
 }
@@ -1885,15 +1921,13 @@ if((receivedData[1] >> 4) ) {
 
 if(receivedData[1] & 0x01){
 
-UART_Write('F');
-
+# 140
 PORTCbits.RC0 = 0;
 PORTCbits.RC2 = 1;
 
 }else {
 
-UART_Write('B');
-
+# 149
 PORTCbits.RC0 = 1;
 PORTCbits.RC2 = 0;
 
@@ -1911,12 +1945,12 @@ if((receivedData[2] >> 4) ) {
 PORTCbits.RC6 = 0;
 if(receivedData[2] & 0x01){
 
-UART_Write('L');
+# 169
 PORTCbits.RC7 = 0;
 PORTCbits.RC3 = 1;
 }else {
 
-UART_Write('R');
+# 176
 PORTCbits.RC7 = 1;
 PORTCbits.RC3 = 0;
 }
@@ -1929,13 +1963,24 @@ PORTCbits.RC6 = 0;
 }
 
 
+}else if(receivedData[0] == 'O' && receivedData[1] == 'K'){
+if(receivedData[3] == 'L'){
+
+receivedData[0] = 'S';
+receivedData[1] = 0x00;
+receivedData[2] = 0x00;
+receivedData[3] = 'T';
+newData=1;
+PORTAbits.RA2 = 0;
+}
+else if(receivedData[3] == 'C'){
+
+PORTAbits.RA2 = 1;
+
+}
 }
 
-else {
-
-UART_Write_Text("ERROR1");
-}
-
+# 210
 }
 
 
@@ -1943,8 +1988,8 @@ UART_Write_Text("ERROR1");
 void InitTimer1(){
 T1CON = 0x01;
 TMR1IF = 0;
-TMR1H = 0xFc;
-TMR1L = 0x18;
+TMR1H = 0x8a;
+TMR1L = 0xd0;
 TMR1IE = 1;
 INTCON |= 0xC0;
 }
@@ -1953,8 +1998,8 @@ INTCON |= 0xC0;
 
 
 void InitTimer0(){
-OPTION_REG = 0x83;
-TMR0 = 6;
+OPTION_REG = 0x87;
+TMR0 = 61;
 INTCON |= 0xA0;
 }
 
@@ -1976,14 +2021,14 @@ PORTA = 0x00;
 PORTB = 0x00;
 PORTC = 0x00;
 PORTAbits.RA2 = 1;
-_delay((unsigned long)((2000)*(20000000/4000.0)));
+_delay((unsigned long)((100)*(20000000/4000.0)));
 PORTAbits.RA2 = 0;
 
 InitTimer0();
 InitTimer1();
 
-# 215
-UART_Init9600();
+
+UART_Init115200();
 GIE = 1;
 
 
@@ -1995,14 +2040,10 @@ PORTCbits.RC3 = 0;
 while(1){
 if(newData){
 
-
-UART_Write(receivedData[0]);
-UART_Write(receivedData[1]);
-UART_Write(receivedData[2]);
-UART_Write(receivedData[3]);
-UART_Write(receivedData[4]);
+# 276
 setHBridge();
-newData = 0;
+
+if(!newData) newData--;
 }
 }
 
@@ -2040,16 +2081,20 @@ PORTAbits.RA2 = ~PORTAbits.RA2;
 }
 
 while(0){
+PORTCbits.RC0 = 0;
+PORTCbits.RC2 = 1;
 PORTCbits.RC1 = 1;
-PORTCbits.RC6 = 1;
-
+_delay((unsigned long)((3500)*(20000000/4000.0)));
 PORTCbits.RC1 = 0;
-PORTCbits.RC6 = 0;
-
+PORTCbits.RC0 = 1;
+PORTCbits.RC2 = 0;
+PORTCbits.RC1 = 1;
+_delay((unsigned long)((3500)*(20000000/4000.0)));
+PORTCbits.RC1 = 0;
 }
 
 
-while(1){
+while(0){
 if(newData){
 setHBridge();
 newData = 0;

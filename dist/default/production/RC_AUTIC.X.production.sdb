@@ -13,29 +13,27 @@
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"64 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+"70 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
 [v _tc_int tc_int `II(v  1 e 1 0 ]
-"104
+"128
 [v _setHBridge setHBridge `(v  1 e 1 0 ]
-"167
+"214
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
-"179
+"226
 [v _InitTimer0 InitTimer0 `(v  1 e 1 0 ]
-"187
+"234
 [v _main main `(v  1 e 1 0 ]
-"39 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
-[v _UART_Init9600 UART_Init9600 `(uc  1 e 1 0 ]
-"76
+"40 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
+[v _UART_Init115200 UART_Init115200 `(uc  1 e 1 0 ]
+"93
 [v _UART_Read UART_Read `(uc  1 e 1 0 ]
-"90
+"107
 [v _UART_Write UART_Write `(v  1 e 1 0 ]
-"96
-[v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.36\include\pic16f689.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "160
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S116 . 1 `uc 1 RA0 1 0 :1:0 
+[s S60 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -43,8 +41,8 @@
 `uc 1 RA5 1 0 :1:5 
 ]
 "175
-[u S123 . 1 `S116 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES123  1 e 1 @5 ]
+[u S67 . 1 `S60 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES67  1 e 1 @5 ]
 "209
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "247
@@ -73,28 +71,28 @@
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "695
 [v _RCREG RCREG `VEuc  1 e 1 @26 ]
-[s S66 . 1 `uc 1 ADON 1 0 :1:0 
+[s S83 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 VCFG 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "737
-[s S72 . 1 `uc 1 . 1 0 :1:0 
+[s S89 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
 `uc 1 CHS2 1 0 :1:4 
 `uc 1 CHS3 1 0 :1:5 
 ]
-[s S79 . 1 `uc 1 . 1 0 :1:0 
+[s S96 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S82 . 1 `uc 1 . 1 0 :1:0 
+[s S99 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S85 . 1 `S66 1 . 1 0 `S72 1 . 1 0 `S79 1 . 1 0 `S82 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES85  1 e 1 @31 ]
+[u S102 . 1 `S83 1 . 1 0 `S89 1 . 1 0 `S96 1 . 1 0 `S99 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES102  1 e 1 @31 ]
 "801
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
 "870
@@ -141,61 +139,43 @@
 [v _TRMT TRMT `VEb  1 e 0 @1217 ]
 "3242
 [v _TXEN TXEN `VEb  1 e 0 @1221 ]
-"40 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
-[v _i i `ui  1 e 2 0 ]
-"41
-[v _tmpChar tmpChar `uc  1 e 1 0 ]
-"42
-[v _newData newData `uc  1 e 1 0 ]
-"43
-[v _receivedData receivedData `[15]uc  1 e 15 0 ]
-"187
+"45 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+[v _i i `VEui  1 s 2 i ]
+"46
+[v _j j `VEui  1 s 2 j ]
+"47
+[v _tmpChar tmpChar `VEuc  1 s 1 tmpChar ]
+"48
+[v _newData newData `VEuc  1 s 1 newData ]
+"49
+[v _receivedData receivedData `VE[21]uc  1 s 21 receivedData ]
+"234
 [v _main main `(v  1 e 1 0 ]
 {
-"287
+"335
 } 0
-"104
+"128
 [v _setHBridge setHBridge `(v  1 e 1 0 ]
 {
-"163
+"210
 } 0
-"96 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
-[v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
+"40 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\uart.h
+[v _UART_Init115200 UART_Init115200 `(uc  1 e 1 0 ]
 {
-[v UART_Write_Text@text text `*.24uc  1 a 1 wreg ]
-"98
-[v UART_Write_Text@i i `i  1 a 2 2 ]
-"96
-[v UART_Write_Text@text text `*.24uc  1 a 1 wreg ]
-"99
-[v UART_Write_Text@text text `*.24uc  1 a 1 1 ]
-"101
+"54
 } 0
-"90
-[v _UART_Write UART_Write `(v  1 e 1 0 ]
-{
-[v UART_Write@data data `uc  1 a 1 wreg ]
-[v UART_Write@data data `uc  1 a 1 wreg ]
-[v UART_Write@data data `uc  1 a 1 0 ]
-"94
-} 0
-"39
-[v _UART_Init9600 UART_Init9600 `(uc  1 e 1 0 ]
-{
-"65
-} 0
-"167 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
+"214 C:\Users\Sirius-PC\Documents\MPLAB_X_PROJEKTI\RC_AUTIC.X\main.c
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
 {
-"174
+"221
 } 0
-"179
+"226
 [v _InitTimer0 InitTimer0 `(v  1 e 1 0 ]
 {
-"183
+"230
 } 0
-"64
+"70
 [v _tc_int tc_int `II(v  1 e 1 0 ]
 {
-"102
+"126
 } 0

@@ -31,9 +31,26 @@ char UART_Init(const long int baudrate)
         TRISB5 = 1;
         CREN = 1;
         TXEN = 1;
+        RCIE = 1;
         return 1;
 	}
 	return 0;
+}
+
+char UART_Init115200()
+{
+    //@ 20 MHz
+    BRGH = 1;
+    SPBRG = 10;
+    SYNC = 0;
+    SPEN = 1;
+    TRISB7 = 1;
+    TRISB5 = 1;
+    CREN = 1;
+    TXEN = 1;
+    RCIE = 1;
+    PEIE = 1;
+    return 1;
 }
 
 char UART_Init9600(){
